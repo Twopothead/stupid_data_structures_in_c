@@ -1,0 +1,137 @@
+// File: 01sequential_list/sequential_list.cc
+// Created by Frank Curie on 18-11-6 
+
+// Implementation of a sequential list
+
+#include <stdio.h>
+#include <stdlib.h>
+
+const int LIST_INIT_SIZE = 100;
+const int LIST_INCRE_SIZE = 10;
+#define OK 1
+#define ERROR 0
+#define TRUE 1
+#define FALSE 0
+typedef int Status;
+
+typedef int Elemtype;
+typedef struct {
+	Elemtype *data;
+	int length;		// current length of the sequential list
+	int listsize; 	// *data + listsize => ElemType data[MAXSIZE];
+} SL;				//sequential list
+
+/**
+ * initilize a sequential list @param sl.
+ */
+bool sq_init(SL &sl){
+	sl.data = (Elemtype*)malloc(sizeof(Elemtype) * LIST_INIT_SIZE);
+	// alternative cpp style : sl.elem = (Elemtype *) new Elemtype [LIST_INIT_SIZE];
+	sl.listsize = LIST_INIT_SIZE;
+	sl.length = 0;
+	return;
+}
+/**
+ *  fill the sequential list @param sl.
+ */
+Status sq_creat(SL &sl,int i, Elemtype e){
+	// if(i < 1 || i > sl.length + 1)
+	// 	return ERROR;
+	// if(i <= sl.length){
+	// 	for(int x = sl.length - 1; x >= i - 1; x--)
+	// 		sl.data[x+1] = sl.data[x]
+
+	// }
+
+
+}
+
+
+Status sq_insert(SL &sl, int i, Elemtype e){
+	// if(sl.length == )
+	if(i < 1 || i > sl.length + 1)
+		return ERROR;	// @param i is invalid 
+	if(i <= sl.length){ // not at the tail 
+		for(int x = sl.length - 1; x >= i - 1; x--)
+			sl.data[x+1] = sl.data[x];
+	}
+	sl.data[i-1] = e; 	// insert the element
+	sl.length++;
+	return OK;
+}
+
+/**
+ * return location of the element @param e,
+ * otherwise, return zero.
+ */
+int sq_locate_elem(SL &sl, Elemtype e){
+	int i;
+	if (sl.length == 0)
+		return 0;
+	for (i = 0; i < sl.length; i++)
+		if (sl.data[i] == e)
+			break;
+	if (i >= sl.length)
+		return 0;
+	return i+1;
+}
+void sq_delete(SL &sl){
+
+}
+
+
+
+typedef struct _node{
+	void *data;
+	struct _node *next; 
+} Node;
+
+typedef struct _linkedlist{
+	Node *head;
+	Node *tail;
+} LinkedList;
+
+
+
+void test_sequetial_list(){
+	print("testing ")
+	SL sl;
+	sq_init(sl);
+
+}
+int main(void){
+	test_sequetial_list();
+	return 0;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// #include <stdio.h>
+// #include <iostream>
+// using namespace std;
+// #ifdef __cplusplus
+// extern "C" {
+// #endif
+// }
+// #define MaxSize 50
+// typedef int Elemtype;
+// typedef struct{
+// 	Elemtype data[MaxSize];
+// 	int length;
+// }SqList;
+
+// int main(void){
+// 	printf("hello,world!");
+// 	return 0;
+// }
